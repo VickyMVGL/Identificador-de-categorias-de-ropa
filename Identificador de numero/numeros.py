@@ -2,6 +2,7 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 # descargar el dataset de mnist (Numeros escritos a mano)
 
@@ -34,3 +35,21 @@ for i, (imagen, etiqueta) in enumerate(datos_entrenamiento.take(25)):
     plt.imshow(imagen, cmap=plt.cm.binary)
     plt.xlabel(clases[int(etiqueta)])
 plt.show()
+
+
+#Creando el modelo de red neuronal
+
+modelo = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28,1)),
+    tf.keras.layers.Dense(units=50, activation='relu'),
+    tf.keras.layers.Dense(units=50, activation='relu'),
+    tf.keras.layers.Dense(units=10, activation='softmax')
+
+])
+
+# Realizando el entrenamiento del modelo
+historial = modelo.fit(
+    datos_entrenamiento,
+    epochs=60,
+    steps_per_epoch=math.ceil(60000 / 32),
+)
