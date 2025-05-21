@@ -112,6 +112,7 @@ def graficar_imagen(i, predicciones_array, etiquetas_reales, imagenes):
         nombres_clases[etiqueta_real], 
         color=color
     ))
+    
 
 # Graficar imagenes
 
@@ -129,6 +130,7 @@ def graficar_valor_arreglo(i, predicciones_array, etiquetas_reales):
 
     grafica[etiqueta_prediccion].set_color('red')
     grafica[etiqueta_real].set_color('blue')
+    
 
 
 filas = 5
@@ -140,4 +142,4 @@ for i in range(num_imagenes):
     graficar_imagen(i, predicciones, etiquetas_prueba, imagenes_prueba)
     plt.subplot(filas, 2*columnas, 2*i+2)
     graficar_valor_arreglo(i, predicciones, etiquetas_prueba)
-    
+plt.show()
